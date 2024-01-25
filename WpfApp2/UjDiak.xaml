@@ -1,0 +1,79 @@
+﻿<Window x:Class="WpfApp2.UjDiak"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="UjDiak" Height="600" Width="800">
+    <Grid Background="#F5F5F5">
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="#333333"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="#CCCCCC"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="#CCCCCC"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Background" Value="#007ACC"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="15 10"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="MinHeight" Value="40"/>
+                <Setter Property="MinWidth" Value="150"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Rectangle x:Name="Background" Fill="{TemplateBinding Background}" RadiusX="5" RadiusY="5"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Background" Property="Fill" Value="#005AA5"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        <StackPanel Margin="10">
+            <Label x:Name="txtOMAzonosito" Content="OM Azonosító" />
+            <TextBox x:Name="OMAzonosito" Text="{Binding Om_azonosito, Mode=TwoWay}"/>
+            <Label x:Name="txtNev" Content="Név" />
+            <TextBox x:Name="Nev" Text="{Binding Név, Mode=TwoWay}"/>
+            <Label x:Name="txtErtesitescim" Content="Értesítési cím" />
+            <TextBox x:Name="Ertesitescim" Text="{Binding Ertesitesi_cim, Mode=TwoWay}"/>
+            <Label x:Name="txtSzuletesiDatum" Content="Születési Dátum" />
+            <DatePicker x:Name="SzuletesiDatum" Text="{Binding Szuletesi_datum, Mode=TwoWay}"/>
+            <Label x:Name="txtElehertosegEmail" Content="E-mail cím" />
+            <TextBox x:Name="ElerhetosegEmail" Text="{Binding Elerhetoseg_email, Mode=TwoWay}"/>
+            <Label x:Name="txtMatekPontszam" Content="Matek pontszám" />
+            <TextBox x:Name="MatekPontszam" Text="{Binding Matekpont, Mode=TwoWay}"/>
+            <Label x:Name="txtMagyarPontszám" Content="Magyar pontszám" />
+            <TextBox x:Name="MagyarPontszam" Text="{Binding Irodalompont, Mode=TwoWay}"/>
+            <Button Content="Mentés" Click="SaveButton_Click"/>
+            <Button Content="Bezárás" Click="LeaveButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

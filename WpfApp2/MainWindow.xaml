@@ -1,0 +1,81 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Viewbox>
+        <Grid Width="800" Background="AliceBlue">
+            <StackPanel Margin="50" HorizontalAlignment="Right">
+                <StackPanel.Resources>
+                    <!-- Define a style for the buttons -->
+                    <Style TargetType="Button">
+                        <Setter Property="Width" Value="140"/>
+                        <Setter Property="Height" Value="50"/>
+                        <Setter Property="Margin" Value="10"/>
+                        <Setter Property="Background" Value="#007ACC"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <!-- Button MouseEnter animation -->
+                                        <EventTrigger RoutedEvent="MouseEnter">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation To="#005AA5" Duration="0:0:0.2" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                        <!-- Button MouseLeave animation -->
+                                        <EventTrigger RoutedEvent="MouseLeave">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation To="#007ACC" Duration="0:0:0.2" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </StackPanel.Resources>
+
+                <Button Content="Új Diák" Click="NewStudentButton_Click"/>
+                <Button Content="Törlés" Click="RemoveButton_Click"/>
+                <Button Content="Exportálás" Click="ExportToCsv_Click"/>
+                <Button Content="Importálás" Click="ImportFromCsv_Click"/>
+                <Button Content="Módosítás" Click="ModositasButton_Click"/>
+            </StackPanel>
+            <DataGrid x:Name="myDataGrid" AutoGenerateColumns="False" 
+               IsReadOnly="True" Width="400px" Margin="10px" HorizontalAlignment="Left">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="OM azonosító" Binding="{Binding Om_azonosito}" />
+                    <DataGridTextColumn Header="Név" Binding="{Binding Név}" />
+                    <DataGridTextColumn Header="Értesítési cím" Binding="{Binding Ertesitesi_cim}" />
+                    <DataGridTextColumn Header="Születési dátum" Binding="{Binding Szuletesi_datum}" />
+                    <DataGridTextColumn Header="Elérhetőség email" Binding="{Binding Elerhetoseg_email}" />
+                    <DataGridTextColumn Header="Matek pontszám" Binding="{Binding Matekpont}" />
+                    <DataGridTextColumn Header="Magyar pontszám" Binding="{Binding Irodalompont}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Viewbox>
+</Window>
